@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <section class="form-section">
+        <div class="form-section-container-box">
+            <h2 ID="H2">Rakta Parikhysa</h2>
+            <form class="form" id="form-section" action="submit-to-google-sheet"name="submit-to-google-sheet">
+                <fieldset>
+                    <!-- <legend align="center">Personal Details</legend> -->
+                <div class="personal-details ">
+                <input type="text" name="name"  placeholder="Your Name">
+                <input type="number" maxlength="2" placeholder="Your Age" step="0" name="age" value="age">
+                <input type="tel" maxlength="12" placeholder="Contact Number" name="Contact" required>
+                <div class="gender">
+                 Male:<input type="radio" name="gender" value="male">
+                Female: <input type="radio" name="gender" value="female">
+                </div>
+                </div>
+                </fieldset>
+                <fieldset>
+                    <!-- <legend class="test" align="center">Test Type</legend> -->
+                <div class="test-type">
+                   
+                    <div class="which-test-box">
+                    <input type="checkbox" id="a" class="test form-check-input mt-0" name="CBC" value="CBC">
+                      <label for="a">Complete blood count</label>
+                  </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="b" class="test form-check-input mt-8" name="CRP" value="CRP">
+                <label for="b">CRP Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="c" class="test form-check-input" name="vitamin d" value="VIT-D">
+                <label for="c">Vitamin D Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="d" class="test form-check-input" name="RT PCR" value="RTPCR">
+                <label for="d">RT PCR Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="e" class="test form-check-input" name="lipid profile" value="LIPID P">
+                <label for="e">Lipid Profile / Cholesterol  </label>
+                   </div>
+                   
+                   <div class="which-test-box">
+                    <input type="checkbox" id="f" class="test form-check-input" name="TSH" value="TSH">
+                <label for="f">TSH Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="g" class="test form-check-input" name="v-b-12" value="v-b-12">
+                <label for="g">Vitamin B12 Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="h" class="test form-check-input" name="hba1c" value="hBA1C">
+                <label for="h">Hba1c Test</label>
+                   </div>
+
+                   <div class="which-test-box">
+                    <input type="checkbox" id="i" class="test form-check-input" name="others" value="Others">
+                <label for="i" id="other">Others</label>
+                   </div>
+                   <textarea row="20" col="10"></textarea>
+
+                 </fieldset> 
+
+                <fieldset>
+                    <!-- <legend align="center">Address</legend> -->
+                <div class="address">
+                <input type="text" id="houseno" placeholder="house/apt no." name="house-no">
+                <input type="text" id="street"  placeholder="Street Name" name="street-no">
+                <input type="text" id="city"    placeholder="Berhampur" disabled name="city">
+                <input type="text" id="zip"  maxlength="6"   placeholder="Zipcode" required name="zipcode">
+                </div>
+                </fieldset>
+                <div class="button">
+                    <p>You will get a call in 30minutes after booking.</p>
+                    <input type="submit" value="book now" class="btn btn-danger mb-3" onclick="button()">
+                </div>
+            </div>
+            
+
+            </form>
+
+        </div>
+        <script src="index.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwODwh10FewAnFQgHZuQhOgkRHY1VQMFRxFjqtXcFOS4SpWfd_suqXpWeZGCdsUMRuH/exec'
+            const form = document.forms['submit-to-google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+            })
+            
+          </script>
+
+</body>
+</html>
